@@ -50,7 +50,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import hooshcallLogo from '@/public/assets/static-logo/hooshcall-logo.svg'
+import hooshcallLogo from '@/public/assets/static-logo/hooshcall-logo.svg';
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
@@ -62,7 +62,6 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
   const pathname = usePathname();
   const { sidebarOpen } = useAppSelector(state => state.dashboard);
   const [selectedSystem, setSelectedSystem] = useState('');
-  const { theme, setTheme } = useTheme();
   const [hasMounted, setHasMounted] = useState(false);
 
   useEffect(() => {
@@ -85,19 +84,6 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
 
     return () => clearInterval(intervalId); // Cleanup interval on component unmount
   }, []);
-
-  // Format date and time
-  const formattedTime = currentTime.toLocaleTimeString('fa-IR', {
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit',
-  });
-
-  const formattedDate = currentTime.toLocaleDateString('fa-IR', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  });
 
   const handleLogout = () => {
     Cookies.remove('token');
@@ -244,11 +230,17 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
           </div>
         </div>{' '}
         <aside className="fixed right-0 top-0 flex flex-col   w-[188px] z-40 h-screen bg-white">
-          <Image alt='هوشکال' width={200} height={150} src={hooshcallLogo}/>
-          <div className=' flex flex-col items-center justify-center'>
-
+          <Image alt="هوشکال" width={200} height={150} src={hooshcallLogo} />
+          <div className=" flex flex-col gap-2 items-start justify-start px-2">
+            {selectedItems?.map(item => (
+              <Button variant={'ghost'} className="w-full">
+                <div className="flex gap-2 text-center w-full mx-auto justify-start items-center">
+                  <item.icon className="  " />
+                  {item?.label}
+                </div>
+              </Button>
+            ))}
           </div>
-         
         </aside>
         {/* Main Content */}
         <div className={`mr-[188px] flex  h-full`}>
