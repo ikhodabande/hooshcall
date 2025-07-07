@@ -1,0 +1,192 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --radix-select-content-transform-origin: top;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@layer base {
+  :root {
+    --background: 60 30% 96%;
+    --foreground: 20 14.3% 4.1%;
+
+    --card: 60 30% 96%;
+    --card-foreground: 20 14.3% 4.1%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 20 14.3% 4.1%;
+
+    --primary: 180 76% 34%;
+    --primary-foreground: 26 83.3% 14.1%;
+
+    --secondary: 60 30% 96%;
+    --secondary-foreground: 24 9.8% 10%;
+
+    --muted: 60 4.8% 95.9%;
+    --muted-foreground: 25 5.3% 44.7%;
+
+    --accent: 60 4.8% 95.9%;
+    --accent-foreground: 24 9.8% 10%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 60 9.1% 97.8%;
+
+    --border: 20 5.9% 90%;
+    --input: 20 5.9% 90%;
+    --ring: 47 95% 60%;
+
+    --radius: 0.75rem;
+
+    /* System-specific colors */
+    --holo-accent: 360 61% 52%; /* #c60001 */
+    --sepidar-accent: 73 59% 44%; /* #10B981 */
+
+    --login-background: 42 96% 49%;
+    --login-foreground: 60 9.1% 97.8%;
+  }
+
+  .dark {
+    --background: 20 14.3% 4.1%;
+    --foreground: 60 9.1% 97.8%;
+
+    --card: 20 14.3% 4.1%;
+    --card-foreground: 60 9.1% 97.8%;
+
+    --popover: 20 14.3% 4.1%;
+    --popover-foreground: 60 9.1% 97.8%;
+
+    --primary: 47 95% 60%;
+    --primary-foreground: 26 83.3% 14.1%;
+
+    --secondary: 12 6.5% 15.1%;
+    --secondary-foreground: 60 9.1% 97.8%;
+
+    --muted: 12 6.5% 15.1%;
+    --muted-foreground: 24 5.4% 63.9%;
+
+    --accent: 12 6.5% 15.1%;
+    --accent-foreground: 60 9.1% 97.8%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 85.7% 97.3%;
+
+    --border: 12 6.5% 15.1%;
+    --input: 12 6.5% 15.1%;
+    --ring: 47 95% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+.rtl {
+  direction: rtl;
+  text-align: right;
+}
+
+/* System-specific styles */
+[data-system='holo'] {
+  --accent: var(--holo-accent);
+  --primary: var(--holo-accent);
+  /* --accent-foreground: 0 0% 100%; */
+}
+
+[data-system='sepidar'] {
+  --accent: var(--sepidar-accent);
+  --primary: var(--sepidar-accent);
+
+  /* --accent-foreground: 0 0% 100%; */
+}
+
+/* Updated 3D transform styles */
+.flip-container {
+  perspective: 1000px;
+  width: 100%;
+  height: 100%;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.flip-card-inner.flipped {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+.flip-card-front {
+  transform: rotateY(0deg);
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+}
+
+/* Update the theme toggle animation styles */
+.theme-toggle {
+  @apply relative h-5 w-5;
+}
+
+.theme-toggle-icon {
+  @apply absolute top-0 left-0 transition-all duration-500;
+}
+
+.theme-toggle-icon.enter {
+  transform: translateY(0) rotate(0);
+  opacity: 1;
+}
+
+.theme-toggle-icon.exit {
+  transform: translateY(20px) rotate(90deg);
+  opacity: 0;
+}
+
+/* Optional: Add a fade effect for the entire page when theme changes */
+body {
+  @apply transition-colors duration-1000 ease-in;
+}
+
+body {
+  font-family: 'Vazirmatn';
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+.leaflet-control-attribution {
+  display: none;
+}
+
+
