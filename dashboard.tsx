@@ -40,6 +40,8 @@ import SettingsPage from './components/pages/settings-page';
 import ProfilePage from './components/pages/profile-page';
 import ContactsListPage from './components/pages/contacts-list-page';
 import UserCallsPage from './components/pages/user-calls-page';
+import Image from 'next/image';
+import hoshcallLogo from '@/public/hoshcall-logo.svg';
 
 function DashboardContent() {
   const dispatch = useAppDispatch();
@@ -164,7 +166,7 @@ function DashboardContent() {
       dir="rtl"
     >
       {/* Header */}
-      <header className="fixed w-full h-[288px] pr-52 top-0 z-0 bg-teal-500 dark:bg-teal-600 text-white pl-24 py-3 shadow-sm">
+      <header className="fixed w-full h-[288px] pr-[14rem] pl-[7rem] top-0 z-0 bg-teal-500 dark:bg-teal-600 text-white  py-10 shadow-sm">
         <div className="flex flex-row-reverse items-center justify-between  mx-auto">
           {/* Left Section - User Menu */}
           <div className="flex flex-row-reverse items-center gap-2 sm:gap-4">
@@ -260,28 +262,6 @@ function DashboardContent() {
             </div>
           </div>
 
-          {/* Center Section - Search & Time */}
-          {/* <div className="flex items-center gap-2 sm:gap-4">
-            {user?.role === 'admin' && (
-              <>
-                <div className="relative hidden md:block">
-                  <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-                  <Input
-                    placeholder="جستجو کنید ..."
-                    className="pr-10 bg-white/20 border-white/30 text-white placeholder:text-white/70 w-48 lg:w-64 focus:bg-white/30"
-                  />
-                </div>
-                <Separator
-                  orientation="vertical"
-                  className="h-6 bg-white/30 hidden md:block"
-                />
-              </>
-            )}
-            <div className="text-xs sm:text-sm font-medium persian-numbers hidden sm:block">
-              {currentTime}
-            </div>
-          </div> */}
-
           {/* Right Section - Branding */}
           <div className="flex items-center gap-3">
             <div className="text-right hidden lg:block">
@@ -311,11 +291,19 @@ function DashboardContent() {
       <div className="flex w-full absolute z-20 top-20 mx-auto">
         {/* Right Sidebar - Desktop Only */}
         <aside className="hidden absolute right-0 -top-20 h-screen md:block w-48 bg-card dark:bg-card shadow-sm border-l dark:border-gray-700">
-          <nav className="p-2 space-y-4 pt-6">
+          <Image
+            alt="hoshcall-logo"
+            width={150}
+            height={150}
+            className="mx-auto"
+            src={hoshcallLogo}
+          />
+          <nav className="p-2 mx-3 space-y-4 pt-6">
             {sidebarItems.map((item) => (
               <div
+                onClick={() => handlePageChange(item.id)}
                 key={item.id}
-                className="text-center flex items-center justify-start gap-2"
+                className="text-center cursor-pointer flex items-center justify-start gap-2"
               >
                 <Button
                   variant={currentPage === item.id ? 'default' : 'ghost'}
@@ -325,9 +313,8 @@ function DashboardContent() {
                       ? 'bg-teal-500 hover:bg-teal-600 dark:bg-teal-600 dark:hover:bg-teal-700 text-white shadow-md'
                       : 'hover:bg-muted dark:hover:bg-gray-700'
                   }`}
-                  onClick={() => handlePageChange(item.id)}
                 >
-                  <item.icon className="w-8 h-8" />
+                  <item.icon className="w-full" />
                 </Button>
                 <div
                   className={`text-sm md:text-base w-full text-start mt-1 transition-colors ${
@@ -343,7 +330,7 @@ function DashboardContent() {
           </nav>
         </aside>{' '}
         {/* Main Content */}
-        <main className="flex-1 mr-48 ml-20 w-full p-3 sm:p-6 min-h-[calc(100vh-80px)]">
+        <main className="flex-1 mr-48  ml-20 w-full p-3 sm:p-9 mt-16 min-h-[calc(100vh-200px)]">
           {renderCurrentPage()}
         </main>
       </div>
