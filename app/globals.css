@@ -103,16 +103,29 @@
   }
 
   [dir="rtl"] ::-webkit-scrollbar-track {
-    background: #f1f1f1;
+    background: hsl(var(--muted));
   }
 
   [dir="rtl"] ::-webkit-scrollbar-thumb {
-    background: #c1c1c1;
+    background: hsl(var(--muted-foreground) / 0.3);
     border-radius: 4px;
   }
 
   [dir="rtl"] ::-webkit-scrollbar-thumb:hover {
-    background: #a8a8a8;
+    background: hsl(var(--muted-foreground) / 0.5);
+  }
+
+  /* Dark mode scrollbar */
+  .dark [dir="rtl"] ::-webkit-scrollbar-track {
+    background: hsl(var(--muted));
+  }
+
+  .dark [dir="rtl"] ::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted-foreground) / 0.3);
+  }
+
+  .dark [dir="rtl"] ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground) / 0.5);
   }
 }
 
@@ -123,5 +136,141 @@
 
   .text-balance {
     text-wrap: balance;
+  }
+
+  /* Responsive utilities */
+  .container-responsive {
+    @apply w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Animation utilities */
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.3s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      transform: translateY(10px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .mobile-optimized {
+    @apply text-sm;
+  }
+
+  .mobile-padding {
+    @apply px-4 py-2;
+  }
+
+  .mobile-grid {
+    @apply grid-cols-1 gap-4;
+  }
+
+  /* Mobile table improvements */
+  .mobile-card {
+    @apply shadow-sm border border-border/50 rounded-lg;
+  }
+
+  .mobile-card:hover {
+    @apply shadow-md;
+  }
+
+  /* Mobile typography */
+  .mobile-title {
+    @apply text-base font-semibold;
+  }
+
+  .mobile-subtitle {
+    @apply text-sm text-muted-foreground;
+  }
+
+  /* Mobile buttons */
+  .mobile-button {
+    @apply text-xs px-3 py-1.5;
+  }
+
+  /* Mobile badges */
+  .mobile-badge {
+    @apply text-xs px-2 py-1;
+  }
+
+  /* Mobile spacing */
+  .mobile-space-y {
+    @apply space-y-3;
+  }
+
+  .mobile-gap {
+    @apply gap-2;
+  }
+}
+
+/* Tablet optimizations */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .tablet-optimized {
+    @apply text-base;
+  }
+
+  .tablet-grid {
+    @apply grid-cols-2 gap-6;
+  }
+
+  /* Tablet table improvements */
+  .tablet-table {
+    @apply text-sm;
+  }
+
+  /* Show horizontal scroll on tablets for tables */
+  .tablet-scroll {
+    @apply overflow-x-auto;
+  }
+}
+
+/* Desktop optimizations */
+@media (min-width: 1024px) {
+  .desktop-grid {
+    @apply grid-cols-3 lg:grid-cols-4 gap-6;
+  }
+
+  .desktop-table {
+    @apply text-base;
+  }
+}
+
+/* Touch-friendly improvements */
+@media (hover: none) and (pointer: coarse) {
+  /* Increase touch targets on touch devices */
+  .touch-target {
+    @apply min-h-11 min-w-11;
+  }
+
+  /* Improve button spacing for touch */
+  .touch-button {
+    @apply px-4 py-3;
+  }
+
+  /* Better spacing for touch interactions */
+  .touch-spacing {
+    @apply space-y-4;
   }
 }

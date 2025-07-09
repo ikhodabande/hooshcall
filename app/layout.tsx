@@ -1,10 +1,12 @@
 import type React from "react"
 import type { Metadata } from "next"
 import { Noto_Sans_Arabic } from "next/font/google"
+import { ThemeProvider } from "@/components/theme-provider"
+import { Toaster } from "@/components/ui/toaster"
 import "./globals.css"
 
 const notoSansArabic = Noto_Sans_Arabic({
-  subsets: ["arabic", "latin"],
+  subsets: ["arabic"],
   weight: ["300", "400", "500", "600", "700", "800"],
   display: "swap",
   variable: "--font-persian",
@@ -59,7 +61,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="fa" dir="rtl" className={notoSansArabic.variable}>
+    <html lang="fa" dir="rtl" className={notoSansArabic.variable} suppressHydrationWarning>
       <head>
         <link rel="icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -72,7 +74,12 @@ export default function RootLayout({
         <meta name="msapplication-TileColor" content="#14b8a6" />
         <meta name="theme-color" content="#14b8a6" />
       </head>
-      <body className={`${notoSansArabic.className} font-persian antialiased`}>{children}</body>
+      <body className={`${notoSansArabic.className} font-persian antialiased`}>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          {children}
+          <Toaster />
+        </ThemeProvider>
+      </body>
     </html>
   )
 }
