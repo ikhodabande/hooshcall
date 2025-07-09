@@ -1,11 +1,7 @@
-import LoginForm from '@/components/auth/login/login-form';
-import Dashboard from '@/components/dashboard/Dashboard';
-import { DashboardLayout } from '@/components/dashboard/layout';
+"use client"
 
-export default function Home() {
-  return (
-    <DashboardLayout>
-      {/* <Dashboard /> */}
-    </DashboardLayout>
-  );
+import Dashboard from "../dashboard"
+
+export default function Page() {
+  return <Dashboard />
 }
